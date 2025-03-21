@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         get { return userData; }
         set { userData = value; }
     }
+    private string saveKey = "UserData";
 
     private void Awake()
     {
@@ -35,6 +36,26 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        UserData = new UserData("Jay Na", 100000, 50000);
+        LoadUserData();
+    }
+
+    public void SaveUserData()
+    {
+        string json = JsonUtility.ToJson(UserData);
+        PlayerPrefs.SetString(saveKey, json);
+    }
+
+    public void LoadUserData()
+    {
+        if (PlayerPrefs.HasKey(saveKey))
+        {
+            string json = PlayerPrefs.GetString(saveKey);
+            userData = JsonUtility.FromJson<UserData>(json);
+        }
+        else
+        {
+            userData = new UserData("Jay Na", 100000, 50000);
+            SaveUserData();
+        }
     }
 }

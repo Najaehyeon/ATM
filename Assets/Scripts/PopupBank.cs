@@ -18,7 +18,7 @@ public class PopupBank : MonoBehaviour
     public TextMeshProUGUI cashText;
     public TextMeshProUGUI balanceText;
 
-    private void Update()
+    private void Start()
     {
         Refresh();
     }
@@ -51,6 +51,8 @@ public class PopupBank : MonoBehaviour
         }
         GameManager.Instance.userData.balance += amount;
         GameManager.Instance.userData.cash -= amount;
+        GameManager.Instance.SaveUserData();
+        Refresh();
     }
 
     public void OnWithdrawal(int amount)
@@ -62,6 +64,8 @@ public class PopupBank : MonoBehaviour
         }
         GameManager.Instance.userData.balance -= amount;
         GameManager.Instance.userData.cash += amount;
+        GameManager.Instance.SaveUserData();
+        Refresh();
     }
 
     public void OnInputDeposit()
