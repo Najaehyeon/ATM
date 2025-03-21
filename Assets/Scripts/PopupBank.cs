@@ -13,6 +13,16 @@ public class PopupBank : MonoBehaviour
     public TMP_InputField depositInputValue;
     public TMP_InputField withdrawalInputValue;
 
+    [Header("Text")]
+    public TextMeshProUGUI userNameText;
+    public TextMeshProUGUI cashText;
+    public TextMeshProUGUI balanceText;
+
+    private void Update()
+    {
+        Refresh();
+    }
+
     public void OnDepositUI()
     {
         atmUI.SetActive(false);
@@ -84,5 +94,12 @@ public class PopupBank : MonoBehaviour
     public void CloseNotEnoughMessage()
     {
         notEnoughUI.SetActive(false);
+    }
+
+    public void Refresh()
+    {
+        userNameText.text = GameManager.Instance.userData.userName;
+        cashText.text = string.Format("{0:N0}", GameManager.Instance.userData.cash);
+        balanceText.text = string.Format("{0:N0}", GameManager.Instance.userData.balance);
     }
 }
