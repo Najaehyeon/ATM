@@ -39,12 +39,14 @@ public class GameManager : MonoBehaviour
         LoadUserData();
     }
 
+    // 데이터 저장하기
     public void SaveUserData()
     {
         string json = JsonUtility.ToJson(UserData);
         PlayerPrefs.SetString(saveKey, json);
     }
 
+    // 데이터 가져오기
     public void LoadUserData()
     {
         if (PlayerPrefs.HasKey(saveKey))

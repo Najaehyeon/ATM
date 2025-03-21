@@ -7,6 +7,7 @@ public class UserData
     public int cash;
     public int balance;
 
+    // »ý¼ºÀÚ
     public UserData(string name, int cash, int balance)
     {
         this.userName = name;
